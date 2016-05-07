@@ -1,4 +1,5 @@
 Meteor.startup(function() {
+
   if(Things.find().count() === 0) {
     var things = [
       'Data on the Wire',

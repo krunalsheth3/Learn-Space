@@ -11,6 +11,9 @@ angular.module('techApp')
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
       switch(error) {
         case 'AUTH_REQUIRED':
+           Session.set('toState', toState.url);
+            $("#loginModal").modal({backdrop: false});
+            break;
         case 'FORBIDDEN':
         case 'UNAUTHORIZED':
           $state.go('main');
