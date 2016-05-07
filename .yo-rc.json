@@ -1,0 +1,22 @@
+{
+  "generator-angular-meteor": {
+    "filters": {
+      "js": true,
+      "html": true,
+      "less": true,
+      "pagination": true,
+      "framework": "bootstrap",
+      "bower": false,
+      "auth": true,
+      "oauth": true,
+      "googleAuth": true,
+      "facebookAuth": true,
+      "twitterAuth": true,
+      "appname": "techApp",
+      "projectname": "tech",
+      "modules": "'angular-meteor',\n  'ui.router',\n  'ui.bootstrap',\n  'angularUtils.directives.dirPagination',\n  'accounts.ui'",
+      "usedBower": true
+    },
+    "appname": "tech"
+  }
+}
