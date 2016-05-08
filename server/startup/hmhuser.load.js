@@ -1,7 +1,7 @@
 Meteor.startup(function () {
     if (Hmhuser.find().count() === 0) {
         var useremails = [];
-        HTTP.call('GET',
+        HTTP.call('GET', 
             "http://sandbox.graph.hmhco.com/v4/developer",
             {
                 headers: {

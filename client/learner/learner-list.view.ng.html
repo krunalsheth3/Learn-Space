@@ -12,20 +12,23 @@
       <div id="{{ 'collapse-' + $index }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body" data-ng-repeat="videoItem in item.videos">
           <h3> {{ videoItem.title }} </h3>
-          <video id="{{ 'video' + $index }}" width="100%" controls>
-               <source data-ng-src="http://www.w3schools.com/html/mov_bbb.mp4"  type="video/mp4">
-               Your browser does not support HTML5 video.
-           </video>
-
-           <button id="confusing" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-default btn-sm" data-ng-click="videoControls('confusing')">
-               <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Confusing
-           </button>
-           <button id="important" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-danger btn-sm" data-ng-click="videoControls('important')">
-                <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Important
-           </button>
-           <button id="wellSaid" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-primary btn-sm" data-ng-click="videoControls('wellSaid')">
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Well Said
-           </button>
+          <div class="col-sm-12 col-md-6">
+            <video id="{{ 'video' + $index }}" width="100%" controls>
+                 <source data-ng-src="{{videoItem.file.url  | trustUrl }}"  type="video/mp4">
+                 Your browser does not support HTML5 video.
+             </video>
+            </div>
+          <div class="col-sm-12 col-md-6">
+             <button id="confusing" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-default btn-sm" data-ng-click="videoControls('confusing')">
+                 <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Confusing
+             </button>
+             <button id="important" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-danger btn-sm" data-ng-click="videoControls('important')">
+                  <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Important
+             </button>
+             <button id="wellSaid" ng-attr-data="{{ videoItem.secure_token}}" ng-attr-videoData="{{ 'video' + $index }}" type="button" class="btn btn-primary btn-sm" data-ng-click="videoControls('wellSaid')">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Well Said
+             </button>
+            </div>
 
         </div>
       </div>
