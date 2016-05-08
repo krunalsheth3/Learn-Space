@@ -1,7 +1,17 @@
 'use strict'
 
 angular.module('techApp')
-.controller('InstructorListCtrl', function($scope) {
+.controller('InstructorListCtrl', function($scope, $meteor, $rootScope) {
+
+
+ $scope.$meteorSubscribe('lecture');
+ $scope.$meteorSubscribe('record');
+
+ $scope.helpers({
+    lecturesList() {
+      return Lecture.find();
+    }
+  });
 
 
  var chart = dc.heatMap("#test");
