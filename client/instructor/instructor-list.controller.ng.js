@@ -33,7 +33,6 @@ angular.module('techApp')
                     var player = $('#video1').get(0);
                 //    $('#gettime').click(function(){
                         if(player){
-                            current_time=player.currentTime;  
                             player.currentTime=filter[0];
                         }
                   //  });
