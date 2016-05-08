@@ -1,0 +1,77 @@
+<div class="container">
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Modules/Lectures</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">Item 1</li>
+              <li class="list-group-item">Item 2</li>
+              <li class="list-group-item">Item 3</li>
+            </ul>
+          </div>
+        </div>
+      </div>  
+      <div class="col-md-8">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Video lecture</h3>
+          </div>
+          <div class="panel-body">
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong>Title!</strong> Alert body ...
+            </div>
+            <video id="video1" width="100%" controls>
+                 <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                 Your browser does not support HTML5 video.
+             </video>
+
+             <button id="confusing" type="button" class="btn btn-default btn-sm" data-ng-click="videoControls(this)">
+                 <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Confusing
+             </button>
+             <button id="important" type="button" class="btn btn-danger btn-sm" data-ng-click="videoControls(this)">
+                  <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Important
+             </button>
+             <button id="wellSaid" type="button" class="btn btn-primary btn-sm" data-ng-click="videoControls(this)">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Well Said
+             </button>
+
+          </div>
+        </div>
+      </div>
+</div>
+<!-- <div class="learner-list container">
+  <h1>Learner</h1>
+  <form ng-submit="save()" name="form" novalidate="" class="thing-form">
+    <p class="input-group">
+      <input type="text" placeholder="Name" ng-model="newLearner.name" class="form-control"/><span class="input-group-btn">
+        <input type="submit" value="Add" class="btn btn-primary"/></span>
+    </p>
+  </form>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="input-group pull-right col-md-3 col-sm-12">
+        <input type="search" ng-model="search" placeholder="Search" class="form-control"/>
+        <div dropdown="" on-toggle="toggled(open)" class="dropdown input-group-btn">
+          <button dropdown-toggle="" class="btn btn-primary dropdown-toggle">{{ orderProperty==='1' ? 'Ascending' : 'Descending' }}<span class="caret"></span></button>
+          <ul role="menu" class="dropdown-menu">
+            <li ng-click="orderProperty='1'">Ascending</li>
+            <li ng-click="orderProperty='-1'">Descending</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="nav nav-tabs nav-stacked col-md-9 col-sm-12">
+        <li dir-paginate="learner in learner | itemsPerPage: perPage" total-items="learnerCount" current-page='page'>
+          <p><a href="/learner/{{learner._id}}">{{ learner.name }}</a>
+            <button ng-click="remove(learner)" class="btn">&times;</button>
+          </p>
+        </li>
+      </ul>
+      <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="col-md-12"></dir-pagination-controls>
+    </div>
+  </div>
+  <p>Total number of learner: {{learnerCount}}</p>
+</div>
+ -->

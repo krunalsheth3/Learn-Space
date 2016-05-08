@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('techApp')
-.controller('MainCtrl', function($scope,  $meteor) {
+.controller('MainCtrl', function($scope,  $meteor, $rootScope, techAppConstants, $location) {
 
 
   //Subscribe to the DB you wana use
@@ -12,16 +12,15 @@ angular.module('techApp')
       /*
       * Create a Post in the List table
       */
-      $meteor.call('getAccessToken',$scope.userObj).then(
-          function(data) {
-            if(angular.isDefined(data)) {
-              debugger;
-            }    
-          },
-         function(err) {
-            alert(err.error);
-          }
-        ); 
+      var result = $meteor.call('getAccessToken',$scope.userObj);
+      $rootScope.access_token = result.access_token;
+      if(result.roles == techAppConstants.roles.instructor) {
+        $location.path('/instructor');
+      } else {
+        $location.path('/learner');
+      }
+          
+          
 
         // // 1. Attempt to login.
         // Meteor.loginWithPassword(currentUser.userName, currentUser.userPassword, function(error) {

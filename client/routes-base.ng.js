@@ -26,6 +26,10 @@ angular.module('techApp')
   * techAppconstants used throughout the portal
   */
   .constant('techAppConstants', {
+    'roles' : {
+      'instructor' : 'Instructor',
+      'leraner'    : 'Learner'
+    },
     'SUCCESS_CODE' : 200,
     'PERPAGEENTRY' : 12,
     'INFINITE_SCROLL_DISTANCE': 0
