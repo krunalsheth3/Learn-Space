@@ -25,12 +25,13 @@ angular.module('techApp')
       "roles"        : Session.get('roles'),
       "secure_token" : $("#"+btn).attr('data'),
       "tag"          : btn,
-      "time"         : current_time
+      "time"         : current_time,
+      "video_title"  : 
     }
     
     $meteor.call('postRecord', recordObj).then(
         function(data) {
-          alert("test");
+          alert("Successfully added your tag");
         }, 
         function(err) {
           alert("Failed to post video data");

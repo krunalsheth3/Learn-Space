@@ -22,7 +22,7 @@ Meteor.methods({
 
         },
         getLectures: function () {
-            return Hmhuser.find();
+            return Lecture.find();
             
         },
         postRecord: function (recordObj) {
@@ -42,23 +42,17 @@ Meteor.methods({
             //var hmhuser = Hmhuser.find({"access_token":recordObj.access_token});
             //recordObj["user"]=hmhuser;
             //console.log(recordObj);
-            
+
 
             return Record.insert(recordObj);
         },
-        getRecords: function (videoObj) {
-            console.log(videoObj.access_token);
-            console.log(videoObj.roles);
-            console.log(videoObj.secure_token);
-            if (recordObj.roles.toUpperCase() === 'learner'.toUpperCase()) {
-                var errorRes = {
-                    'errorCode': '-1',
-                    'errorMessage': "role unsupported for this operation"
-                };
-                return errorRes;
-                
-            }
-            return Record.find({"secure_token":videoObj.secure_token});
+        getRecords: function () {
+            console.log(Record.find().fetch());
+            return Record.find();
         }
     }
 )
+
+
+
+
