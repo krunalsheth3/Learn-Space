@@ -137,6 +137,7 @@ Meteor.methods({
                     'errorMessage': "role unsupported for this operation"
                 };
                 return errorRes;
+                
             }
             return Record.find({"secure_token":videoObj.secure_token});
         }
