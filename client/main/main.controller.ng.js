@@ -5,27 +5,35 @@ angular.module('techApp')
 
 
   //Subscribe to the DB you wana use
-  //$scope.$meteorSubscribe('hmhuser');
+  $scope.$meteorSubscribe('hmhuser');
   $scope.disableButton = false;
   $scope.submitLoginForm = function(){
 
 
-    Meteor.call('getAccessToken', $scope.userObj, function(err,response) {
-      $scope.disableButton = true;
-          if(err) {
-            alert(err);
-          }
-          
-          $rootScope.access_token = response.access_token;
-          $rootScope.roles = response.roles;
+    $meteor.call('getAccessToken', $scope.userObj).then(
+        function(data) {
+          $scope.disableButton = true;
+           
+            $rootScope.access_token = data.access_token;
+            $rootScope.roles = data.roles;
 
-          if(response.roles == techAppConstants.roles.instructor)  {
-            $location.path("/instructor");
-          } else {
-            $location.path("/learner");
-          }
-          $scope.disableButton = false;
-        });
+            if(data.roles == techAppConstants.roles.instructor)  {
+              $location.path("/instructor");
+            } else {
+              $location.path("/learner");
+            }
+            $scope.disableButton = false;
+              
+           
+           
+        }, 
+        function(err) {
+          alert("Failed to retrieve user info");
+        }
+
+      );
+
+      
 
       /*
       * Create a Post in the List table

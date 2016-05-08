@@ -4,6 +4,25 @@ angular.module('techApp')
 .controller('LearnerListCtrl', function($scope, $meteor) {
 
 
+   $scope.$meteorSubscribe('hmhuser');
+
+
+
+  // $scope.mainListData = $meteor.collection(function() {
+  //   debugger;
+  //     return Lecture.find();
+  // });
+
+  $meteor.call('getLectures').then(
+      function(data) {
+        alert(data);
+      }, 
+      function(err) {
+        alert("Failed to retrieve user info");
+      }
+
+    );
+
   $scope.videoControls = function(btn) {
     var player = $('#video1').get(0);
             
