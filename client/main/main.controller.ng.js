@@ -13,7 +13,9 @@ angular.module('techApp')
     $meteor.call('getAccessToken', $scope.userObj).then(
         function(data) {
           $scope.disableButton = true;
-           
+            
+            Session.set('access_token', data.access_token);
+            Session.set('roles', data.roles);
             $rootScope.access_token = data.access_token;
             $rootScope.roles = data.roles;
 
