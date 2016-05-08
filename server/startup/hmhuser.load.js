@@ -67,12 +67,32 @@ Meteor.startup(function () {
                                             function (error, response) {
                                                 var getDocumentsResponse = response.data;
                                                 var documents = getDocumentsResponse.data;
+                                                var idx = 0;
+                                                var firstDocSet = [];
+                                                var secondDocSet = [];
                                                 documents.forEach(function (documents) {
-                                                    Video.insert(documents);
-                                                    console.log("inserting video: " + documents.secure_token);
+                                                    if(idx%2 ==0){
+                                                        firstDocSet.push(documents);
+                                                    }else{
+                                                        secondDocSet.push(documents);
+                                                    }
+                                                    idx++;
+                                                    if (Video.find({"secure_token": documents.secure_token}).count() == 0) {
+                                                        Video.insert(documents);
+                                                        console.log("inserting video: " + documents.secure_token);
+                                                    }
+                                                    else {
+                                                        Video.update({"secure_token": documents.secure_token}, {$set: documents})
+                                                        console.log("updating video: " + documents.secure_token);
+                                                    }
                                                 });
                                                 for (var i = 0; i < getLecturesResponse.data.length; i++) {
-                                                    getLecturesResponse.data[i]["videos"] = documents;
+                                                    if(i%2==0){
+                                                        getLecturesResponse.data[i]["videos"] = firstDocSet;
+                                                    }else{
+                                                        getLecturesResponse.data[i]["videos"] = secondDocSet;
+                                                    }
+
                                                 }
                                                 for (var i = 0; i < getLecturesResponse.data.length; i++) {
                                                     if (Lecture.find({"course_id": getLecturesResponse.data[i].course_id}).count() == 0) {
