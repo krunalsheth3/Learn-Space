@@ -5,22 +5,45 @@ angular.module('techApp')
 
 
   //Subscribe to the DB you wana use
-  $scope.$meteorSubscribe('staff');
-
+  //$scope.$meteorSubscribe('hmhuser');
+  $scope.disableButton = false;
   $scope.submitLoginForm = function(){
+
+
+    Meteor.call('getAccessToken', $scope.userObj, function(err,response) {
+      $scope.disableButton = true;
+          if(err) {
+            alert(err);
+          }
+          
+          $rootScope.access_token = response.access_token;
+          $rootScope.roles = response.roles;
+
+          if(response.roles == techAppConstants.roles.instructor)  {
+            $location.path("/instructor");
+          } else {
+            $location.path("/learner");
+          }
+          $scope.disableButton = false;
+        });
 
       /*
       * Create a Post in the List table
       */
-      var result = $meteor.call('getAccessToken',$scope.userObj);
-      $rootScope.access_token = result.access_token;
-      if(result.roles == techAppConstants.roles.instructor) {
-        $location.path('/instructor');
-      } else {
-        $location.path('/learner');
-      }
+      // $meteor.call('getAccessToken',$scope.userObj).then(
+      //           function(data) {
+      //             if(angular.isDefined(data)) {
+      //               alert(data);
+      //             }    
+      //           },
+      //          function(err) {
+      //             alert(err.error);
+      //           }
+      //         ); 
+
+      
           
-          
+
 
         // // 1. Attempt to login.
         // Meteor.loginWithPassword(currentUser.userName, currentUser.userPassword, function(error) {

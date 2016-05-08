@@ -3,13 +3,15 @@
 angular.module('techApp')
 .controller('LearnerDetailCtrl', function($scope, $stateParams) {
   
+  $scope.$meteorSubscribe('lecture');
+  
   $scope.helpers({
     learner: function() {
       return Learner.findOne({ _id: $stateParams.learnerId }); 
     }
   });
   
-  $scope.subscribe('learner');
+  
   
   $scope.save = function() {
     if($scope.form.$valid) {
