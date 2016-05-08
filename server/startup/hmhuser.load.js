@@ -2,7 +2,7 @@ Meteor.startup(function () {
 
     if (Hmhuser.find().count() === 0) {
         var useremails = [
-            { 
+            {   
                 "user_name": "emma_morgan_teacher_a6d66350-9c25-45cc-92c7-d674ad9496f1.hmhco.com"
             }, {
                 "user_name": "emma_morgan_student_a6d66350-9c25-45cc-92c7-d674ad9496f1.hmhco.com"

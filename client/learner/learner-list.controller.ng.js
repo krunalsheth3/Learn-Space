@@ -1,42 +1,42 @@
 'use strict'
 
 angular.module('techApp')
-.controller('LearnerListCtrl', function($scope, $meteor) {
+.controller('LearnerListCtrl', function($scope, $meteor, $rootScope) {
 
 
-   $scope.$meteorSubscribe('hmhuser');
+  $scope.$meteorSubscribe('lecture');
+  $scope.$meteorSubscribe('record');
 
+ $scope.helpers({
+    lecturesList() {
+      return Lecture.find();
+    }
+  });
 
-
-  // $scope.mainListData = $meteor.collection(function() {
-  //   debugger;
-  //     return Lecture.find();
-  // });
-
-  $meteor.call('getLectures').then(
-      function(data) {
-        alert(data);
-      }, 
-      function(err) {
-        alert("Failed to retrieve user info");
-      }
-
-    );
+ 
 
   $scope.videoControls = function(btn) {
-    var player = $('#video1').get(0);
-            
-    if (player) {
-        var current_time=Math.floor(player.currentTime);
-        console.log(current_time);
-        var obj = {
-          'tag': btn.$id,
-          'currentTime': current_time
-        }
-        var result = $meteor.call('postData',obj);
+    var player = $("#"+btn).attr('videoData');
+    var video = $("#"+player).get(0);
+    var current_time = Math.floor(video.currentTime);
 
-      
+    var recordObj = {
+      "access_token" : Session.get('access_token'),
+      "roles"        : Session.get('roles'),
+      "secure_token" : $("#"+btn).attr('data'),
+      "tag"          : btn,
+      "time"         : current_time
     }
+    
+    $meteor.call('postRecord', recordObj).then(
+        function(data) {
+          alert("test");
+        }, 
+        function(err) {
+          alert("Failed to post video data");
+        }
+
+      );
             
         
   }

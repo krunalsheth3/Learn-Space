@@ -20,7 +20,6 @@ Meteor.methods({
                 
             return Hmhuser.findOne(where);
 
-
         },
         getLectures: function () {
             return Hmhuser.find();
@@ -32,18 +31,20 @@ Meteor.methods({
             console.log(recordObj.secure_token);
             console.log(recordObj.tag);
             console.log(recordObj.time);
-            if (recordObj.roles.toUpperCase() === 'instructor'.toUpperCase()) {
-                var errorRes = {
-                    'errorCode': '-1',
-                    'errorMessage': "role unsupported for this operation"
-                };
-                return errorRes;
-            }
+            // if (recordObj.roles.toUpperCase() === 'instructor'.toUpperCase()) {
+            //     var errorRes = {
+            //         'errorCode': '-1',
+            //         'errorMessage': "role unsupported for this operation"
+            //     };
+            //     return errorRes;
+            // }
 
-            var hmhuser = Hmhuser.find({"access_token":recordObj.access_token});
-            recordObj["user"]=hmhuser;
+            //var hmhuser = Hmhuser.find({"access_token":recordObj.access_token});
+            //recordObj["user"]=hmhuser;
+            //console.log(recordObj);
+            
 
-            Record.insert(recordObj);
+            return Record.insert(recordObj);
         },
         getRecords: function (videoObj) {
             console.log(videoObj.access_token);
