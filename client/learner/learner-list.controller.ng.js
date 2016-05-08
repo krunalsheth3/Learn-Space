@@ -25,8 +25,7 @@ angular.module('techApp')
       "roles"        : Session.get('roles'),
       "secure_token" : $("#"+btn).attr('data'),
       "tag"          : btn,
-      "time"         : current_time,
-      "video_title"  : 
+      "time"         : current_time
     }
     
     $meteor.call('postRecord', recordObj).then(
